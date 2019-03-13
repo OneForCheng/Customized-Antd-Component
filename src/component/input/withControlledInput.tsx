@@ -1,5 +1,4 @@
 import * as React from 'react'
-import { Input } from 'antd'
 import { InputProps } from 'antd/lib/input'
 
 interface IState {
@@ -8,8 +7,8 @@ interface IState {
 
 type IProps = InputProps
 
-const withControlledInput = (validator?: (value: string) => boolean) => {
-  class ControlledInput extends React.Component<IProps, IState> {
+const withControlledInput = (validator?: (value: string) => boolean) => (WrappedComponent: React.ComponentClass<IProps, any>) => {
+  class ControlledInput extends React.Component<IProps, IState>  {
     static getDerivedStateFromProps(nextProps: IProps) {
       if ('value' in nextProps) {
         return {
@@ -42,7 +41,7 @@ const withControlledInput = (validator?: (value: string) => boolean) => {
     }
 
     render() {
-      return (<Input {...this.props} value={this.state.value} onChange={this.handleChange}/>)
+      return (<WrappedComponent {...this.props} value={this.state.value} onChange={this.handleChange}/>)
     }
   }
 
