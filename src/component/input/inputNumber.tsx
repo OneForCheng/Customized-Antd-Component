@@ -1,5 +1,5 @@
-import * as React from "react";
-import withControlledInput from "./withControlledInput";
+import * as React from 'react';
+import withControlledInput from './withControlledInput';
 
 const validator = (value: string) => {
   return /^([0-9]*)$/.test(value)
